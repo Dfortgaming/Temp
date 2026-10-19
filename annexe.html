@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bouton Aléatoire Web</title>
+    <!-- Tailwind CSS pour les utilitaires de style -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: radial-gradient(circle at 50% 50%, #1e1b2e 0%, #0d0b14 100%);
+            min-height: 100vh;
+        }
+
+        /* Grand bouton en vw et vh avec effet 3D moderne */
+        .big-red-button {
+            width: clamp(280px, 65vw, 650px);
+            height: clamp(140px, 22vh, 240px);
+            background: linear-gradient(135deg, #ff334b 0%, #d61833 60%, #990017 100%);
+            box-shadow: 
+                0 15px 35px -5px rgba(239, 35, 60, 0.45),
+                0 0 25px 0 rgba(239, 35, 60, 0.2),
+                inset 0 2px 4px rgba(255, 255, 255, 0.4),
+                inset 0 -6px 8px rgba(0, 0, 0, 0.45);
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .big-red-button:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 
+                0 22px 45px -5px rgba(239, 35, 60, 0.65),
+                0 0 40px 5px rgba(239, 35, 60, 0.3),
+                inset 0 3px 5px rgba(255, 255, 255, 0.5),
+                inset 0 -6px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .big-red-button:active {
+            transform: translateY(4px) scale(0.98);
+            box-shadow: 
+                0 6px 15px 0 rgba(239, 35, 60, 0.3),
+                inset 0 3px 6px rgba(0, 0, 0, 0.6),
+                inset 0 -2px 3px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Halo pulsant à l'arrière-plan */
+        .glow-pulse {
+            animation: pulse-glow 3s infinite ease-in-out;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.3; transform: scale(0.95); }
+            50% { opacity: 0.6; transform: scale(1.08); }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-between text-white overflow-hidden p-6 selection:bg-red-500 selection:text-white">
+
+    <!-- En-tête -->
+    <header class="text-center pt-6 z-10">
+        <span class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-widest text-red-400 bg-red-950/60 border border-red-800/50 rounded-full mb-3 backdrop-blur-sm">
+            Exploration Aléatoire
+        </span>
+        <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white drop-shadow-md">
+            Prêt pour l'inconnu ?
+        </h1>
+        <p class="text-slate-400 text-sm sm:text-base mt-1 max-w-md mx-auto">
+            Cliquez sur le bouton ci-dessous pour être transporté vers une destination du web au hasard.
+        </p>
+    </header>
+
+    <!-- Zone Centrale avec le Bouton -->
+    <main class="relative flex items-center justify-center my-auto py-10 z-10">
+        <!-- Lueur de fond -->
+        <div class="absolute w-[70vw] max-w-[700px] h-[25vh] max-h-[280px] bg-red-600/30 rounded-3xl blur-3xl glow-pulse pointer-events-none"></div>
+
+        <!-- Grand Bouton Rouge Principal -->
+        <button 
+            id="random-portal-btn" 
+            class="big-red-button relative rounded-3xl flex flex-col items-center justify-center cursor-pointer border border-red-400/40 group overflow-hidden"
+            aria-label="Naviguer vers un site aléatoire"
+        >
+            <!-- Effet de brillance au survol -->
+            <div class="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-[200%] group-hover:translate-x-[350%] transition-transform duration-1000 ease-in-out"></div>
+
+            <!-- Contenu du bouton -->
+            <div class="flex items-center gap-3 sm:gap-4 drop-shadow">
+                <svg class="w-8 h-8 sm:w-12 sm:h-12 text-white transition-transform duration-300 group-hover:rotate-45" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+                <span class="text-2xl sm:text-4xl md:text-5xl font-black uppercase tracking-wider text-white">
+                    Téléportation
+                </span>
+            </div>
+
+            <!-- Sous-texte dynamique -->
+            <span id="button-subtext" class="text-xs sm:text-sm font-semibold tracking-wide text-red-200/90 mt-2 flex items-center gap-1.5">
+                Cliquez pour découvrir un site
+                <svg class="w-4 h-4 inline-block transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+            </span>
+        </button>
+    </main>
+
+    <!-- Pied de page avec compteur & sélecteur de mode d'ouverture -->
+    <footer class="w-full max-w-lg text-center pb-4 z-10">
+        <div class="flex items-center justify-center gap-2 text-xs sm:text-sm text-slate-400 bg-slate-900/60 py-2.5 px-4 rounded-xl border border-slate-800/60 backdrop-blur-md shadow-inner">
+            <label class="flex items-center gap-2 cursor-pointer select-none">
+                <input type="checkbox" id="new-tab-toggle" checked class="w-4 h-4 rounded text-red-600 accent-red-600 focus:ring-0 bg-slate-800 border-slate-700 cursor-pointer">
+                <span>Ouvrir dans un nouvel onglet</span>
+            </label>
+            <span class="text-slate-600">•</span>
+            <span id="destination-count" class="text-slate-400">12 sites prêts</span>
+        </div>
+    </footer>
+
+    <script>
+        // Liste de sites web sélectionnés
+        const randomDestinations = [
+            { name: "Wikipédia Aléatoire", url: "https://fr.wikipedia.org/wiki/Sp%C3%A9cial:Page_au_hasard" },
+            { name: "Internet Archive", url: "https://archive.org" },
+            { name: "Unsplash", url: "https://unsplash.com" },
+            { name: "GitHub Trending", url: "https://github.com/trending" },
+            { name: "OpenStreetMap", url: "https://www.openstreetmap.org" },
+            { name: "Astronomy Picture of the Day (NASA)", url: "https://apod.nasa.gov/apod/astropix.html" },
+            { name: "Project Gutenberg", url: "https://www.gutenberg.org" },
+            { name: "Radio Garden", url: "https://radio.garden" },
+            { name: "Window Swap", url: "https://www.window-swap.com" },
+            { name: "Hacker News", url: "https://news.ycombinator.com" },
+            { name: "Music-Map", url: "https://www.music-map.com" },
+            { name: "EarthCam", url: "https://www.earthcam.com" }
+        ];
+
+        // Éléments du DOM
+        const portalBtn = document.getElementById('random-portal-btn');
+        const buttonSubtext = document.getElementById('button-subtext');
+        const newTabToggle = document.getElementById('new-tab-toggle');
+        const destinationCount = document.getElementById('destination-count');
+
+        // Mettre à jour le texte du compteur
+        if (destinationCount) {
+            destinationCount.textContent = `${randomDestinations.length} destinations`;
+        }
+
+        // Action lors du clic sur le bouton
+        portalBtn.addEventListener('click', () => {
+            // Choix d'une destination aléatoire
+            const randomIndex = Math.floor(Math.random() * randomDestinations.length);
+            const selected = randomDestinations[randomIndex];
+
+            // Feedback visuel avant redirection
+            buttonSubtext.textContent = `Cap sur : ${selected.name}...`;
+
+            setTimeout(() => {
+                const openInNewTab = newTabToggle.checked;
+                if (openInNewTab) {
+                    window.open(selected.url, '_blank', 'noopener,noreferrer');
+                    // Réinitialiser le texte après un court délai
+                    setTimeout(() => {
+                        buttonSubtext.innerHTML = `Cliquez pour découvrir un site <svg class="w-4 h-4 inline-block transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>`;
+                    }, 1500);
+                } else {
+                    window.location.href = selected.url;
+                }
+            }, 250);
+        });
+    </script>
+</body>
+</html>
