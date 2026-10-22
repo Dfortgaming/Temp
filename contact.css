@@ -1,0 +1,77 @@
+/* Style général de la page */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121826;
+    color: #f1f5f9;
+    line-height: 1.6;
+}
+
+/* En-tête */
+header {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #ff5100;
+    border-bottom: 3px solid #26175d;
+}
+
+header h1 {
+
+    color: #26175d;
+    font-size: 2.5rem;
+}
+
+header p {
+    color: #cbd5e1;
+}
+
+/* Contenu principal */
+main {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Cartes des sections */
+section {
+    background-color: #1e293b;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    border: 1px solid #334155;
+}
+
+h2 {
+    color: #7dd3fc;
+}
+
+/* Liste des objectifs */
+li {
+    margin: 8px 0;
+}
+
+/* Bouton */
+button {
+    background-color: #38bdf8;
+    color: #0f172a;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: #7dd3fc;
+    transform: translateY(-2px);
+}
+
+/* Pied de page */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #94a3b8;
+    border-top: 1px solid #334155;
+}
