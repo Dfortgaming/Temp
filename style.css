@@ -1,9 +1,9 @@
 body{
-    background-color:whitesmoke ;
+    background-color:rgb(187, 9, 9) ;
 }
 
 .button{
-    background-color: gray;
+    background-color: rgb(42, 11, 243);
     width: 200px;
     margin: 35% ;
     padding: 10%;
