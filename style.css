@@ -5,9 +5,25 @@ body{
 .button{
     background-color: rgb(42, 11, 243);
     width: 200px;
-    margin: 35% ;
-    padding: 10%;
+    padding: 5%;
     border: 1px solid black;
     text-decoration: none;
+    color: black;
 
 }
+h1{
+    text-align: center;
+}
+ul{
+    list-style-type: none;  
+    color: black;
+    text-align: center;
+}
+li{
+    padding: 2%;
+}
+
+/* h1{
+    display: flex;
+    align-items: center;
+} */
