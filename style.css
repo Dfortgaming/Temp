@@ -5,7 +5,8 @@ body{
 .button{
     background-color: rgb(42, 11, 243);
     width: 200px;
-    padding: 5%;
+    margin: 1% 0 1% 0 ;
+    padding: 3%;
     border: 1px solid black;
     text-decoration: none;
     color: black;
@@ -22,7 +23,11 @@ ul{
 li{
     padding: 2%;
 }
-
+.container{
+    display: flex;
+    flex-direction: column;
+    
+}
 /* h1{
     display: flex;
     align-items: center;
